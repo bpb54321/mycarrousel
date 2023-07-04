@@ -3,7 +3,7 @@
 </script>
 
 <img src="{svelteLogo}" alt="The Svelte logo">
-<h1>My Carrousel</h1>
+<h2>My Carrousel</h2>
 
 <style>
 </style>
