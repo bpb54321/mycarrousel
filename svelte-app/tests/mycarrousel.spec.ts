@@ -10,20 +10,19 @@ test.describe('My Carrousel', () => {
 
         await expect(myCarrouselTitle).toBeVisible()
     })
-    test('should display the correct images when the next button is clicked', async ({page}) => {
-        // Arrange
+    test('should display the correct images', async ({page}) => {
         // Act
-        await page.goto('https://www.decathlon.ca/fr')
+        await page.goto('http://localhost:8888/presta-shop/qc/')
 
         // Assert
-        const recommandationsCarrousel = await page.getByTestId('CarouselLayout_wrapper').filter({ hasText: 'Nos recommandations' })
-        await expect(recommandationsCarrousel).toBeVisible()
+        const recommendationsCarrousel = await page.getByTestId('my-carrousel').filter({ hasText: 'Nos recommandations' })
+        await expect(recommendationsCarrousel).toBeVisible()
 
-        const carrouselHeading = await recommandationsCarrousel.getByRole('heading', {name: 'Nos recommandations', level: 2})
+        const carrouselHeading = await recommendationsCarrousel.getByRole('heading', {name: 'Nos recommandations', level: 2})
         await expect(carrouselHeading).toBeVisible()
 
-        // const image = await
+        const image = await recommendationsCarrousel.getByAltText('Deux femmes qui dansent')
 
-            // https://images.ctfassets.net/tacg73mas1jx/1J4L9xGRfwEB7wIU53jI8r/86349fc8428647621275241e817e3849/SLIDER_-_FESTIVAL_FR.jpg
+        await expect(image).toHaveAttribute('src', 'https://images.ctfassets.net/tacg73mas1jx/1J4L9xGRfwEB7wIU53jI8r/86349fc8428647621275241e817e3849/SLIDER_-_FESTIVAL_FR.jpg')
     })
 })
